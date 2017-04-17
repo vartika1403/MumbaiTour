@@ -10,7 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    private final int interval = 3000;
+    private final int interval = 2000;
 
     @BindView(R.id.image_splash)
     public ImageView splashImage;
