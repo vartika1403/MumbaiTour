@@ -26,37 +26,42 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:id="@+id/first_item"
+            android:id="@+id/first_item_weather"
             android:layout_gravity="top|start"
             android:text="WEATHER"/>
 
         <Button
-            android:id="@+id/second_item"
+            android:id="@+id/second_item_pubs"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:text="PUBS AND BARS"/>
 
         <Button
-            android:id="@+id/third_item"
+            android:id="@+id/third_item_hotels"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:text="HOTELS"/>
 
         <Button
-            android:id="@+id/fourth_item"
+            android:id="@+id/fourth_item_train"
             android:text="TRAIN ROUTE"/>
 
         <Button
-            android:id="@+id/fivth_item"
+            android:id="@+id/fivth_item_visit"
             android:layout_marginLeft="15dp"
             android:layout_marginStart="15dp"
             android:text="MUST VISIT"/>
 
         <Button
-            android:id="@+id/sixth_item"
+            android:id="@+id/sixth_item_feedback"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
             android:text="FEEDBACK"/>
     </GridLayout>
+
+    <FrameLayout
+        android:id="@+id/weather_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
