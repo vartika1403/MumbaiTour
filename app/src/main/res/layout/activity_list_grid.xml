@@ -4,7 +4,7 @@
     android:id="@+id/activity_list_grid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@drawable/bandra_worli_sea_link"
     tools:context="com.example.vartikasharma.mumbaitour.ListGridActivity">
 
   <!--  <LinearLayout
