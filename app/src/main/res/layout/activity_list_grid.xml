@@ -4,16 +4,59 @@
     android:id="@+id/activity_list_grid"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/priyanka"
+    android:background="@color/colorBackground"
     tools:context="com.example.vartikasharma.mumbaitour.ListGridActivity">
 
-    <LinearLayout
+  <!--  <LinearLayout
         android:id="@+id/vertical_linear_layout"
         android:orientation="vertical"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    </LinearLayout>
+    </LinearLayout>-->
+
+    <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:rowCount="2"
+        android:columnCount="3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/first_item"
+            android:layout_gravity="top|start"
+            android:text="WEATHER"/>
+
+        <Button
+            android:id="@+id/second_item"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="PUBS AND BARS"/>
+
+        <Button
+            android:id="@+id/third_item"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="HOTELS"/>
+
+        <Button
+            android:id="@+id/fourth_item"
+            android:text="TRAIN ROUTE"/>
+
+        <Button
+            android:id="@+id/fivth_item"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:text="MUST VISIT"/>
+
+        <Button
+            android:id="@+id/sixth_item"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:text="FEEDBACK"/>
+    </GridLayout>
 
 </RelativeLayout>
