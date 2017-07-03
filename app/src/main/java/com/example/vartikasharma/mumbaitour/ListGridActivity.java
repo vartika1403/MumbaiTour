@@ -57,6 +57,7 @@ public class ListGridActivity extends AppCompatActivity {
     private void openWeatherFragment() {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.addToBackStack("tag");
         ft.replace(R.id.weather_fragment, new FragmentWeatherDisplay()).commit();
     }
 
