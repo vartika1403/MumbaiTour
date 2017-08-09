@@ -10,6 +10,7 @@
     <ImageView
         android:id="@+id/image_splash"
         android:src="@drawable/cover_pic"
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>

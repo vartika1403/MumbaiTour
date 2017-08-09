@@ -10,7 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    private final int interval = 2000;
+    private final int interval = 1000;
 
     @BindView(R.id.image_splash)
     public ImageView splashImage;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        splashImage.setImageResource(R.drawable.cover_pic);
+        splashImage.setImageResource(R.drawable.mumbai_cover);
 
         Runnable runnable = new Runnable() {
             @Override
