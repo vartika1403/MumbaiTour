@@ -85,8 +85,8 @@ public class HomeActivity extends AppCompatActivity
         if (id == R.id.weather_screen) {
             // Handle the camera action
             openWeatherFragment();
-        } else if (id == R.id.nav_gallery) {
-
+        } else if (id == R.id.train_route_screen) {
+            openLocalTrainRouteFragment();
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
@@ -100,6 +100,13 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openLocalTrainRouteFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.addToBackStack("tag");
+        ft.replace(R.id.frame, new FragmentLocalTrainRoute()).commit();
     }
 
     private void openWeatherFragment() {
