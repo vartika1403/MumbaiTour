@@ -1,22 +1,23 @@
 package com.example.vartikasharma.mumbaitour;
 
-import android.app.FragmentTransaction;
 import android.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class ListGridActivity extends AppCompatActivity {
+    private static final String LOG_TAG = ListGridActivity.class.getSimpleName();
 
-
-    public Button FeedbackButton;
+    private String[] drawerTitles;
     @BindView(R.id.content_frame)
     public FrameLayout weatherFragment;
+    @BindView(R.id.left_drawer)
+    public ListView drawerList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +26,10 @@ public class ListGridActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-
     private void openWeatherFragment() {
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.addToBackStack("tag");
         ft.replace(R.id.content_frame, new FragmentWeatherDisplay()).commit();
     }
-
 }

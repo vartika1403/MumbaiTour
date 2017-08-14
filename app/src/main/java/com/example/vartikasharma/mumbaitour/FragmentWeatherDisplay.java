@@ -100,46 +100,6 @@ public class FragmentWeatherDisplay extends Fragment {
             }
 
         });
-      /*  OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(URL)
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-                Toast.makeText(getActivity(), "Can't fetch data", Toast.LENGTH_LONG).show();
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onResponse(Response response) throws IOException {
-                final String jsonData = response.body().string();
-                Log.i(LOG_TAG, "json, "+ jsonData);
-                try {
-                    jsonObject = new JSONObject(jsonData);
-                    Log.i(LOG_TAG, "jsonArray, "+ jsonObject);
-
-                    (getActivity()).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                updateViewWithData(jsonObject);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
-        if (jsonObject != null) {
-            updateViewWithData(jsonObject);
-        }*/
     }
 
     private void updateViewWithData(WeatherResponse weatherObject) throws JSONException {
@@ -151,8 +111,8 @@ public class FragmentWeatherDisplay extends Fragment {
         double pressureValue = weatherObject.getPressure();
         double humidityValue = weatherObject.getHumidity();
         Log.i(LOG_TAG, "tempValue, " +tempValue);
-        cityTemp.setText(" " + tempValue);
-        cityPressure.setText(" " + pressureValue);
-        cityHumidity.setText(" " + humidityValue);
+        cityTemp.setText("TEMPERATURE: " + tempValue);
+        cityPressure.setText("PRESSURE: " + pressureValue);
+        cityHumidity.setText("HUMIDITY: " + humidityValue);
     }
 }
