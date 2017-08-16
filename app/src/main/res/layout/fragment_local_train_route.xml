@@ -4,10 +4,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.vartikasharma.mumbaitour.FragmentLocalTrainRoute">
 
-    <!-- TODO: Update blank fragment layout -->
     <ImageView
+        android:id="@+id/route_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/mumbai_local_train_map" />
+        android:scaleType="matrix"
+        android:src="@drawable/mumbai_local_train_map" />-
+    <!--<com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        android:id="@+id/route_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />-->
 
 </FrameLayout>
