@@ -3,9 +3,6 @@ package com.example.vartikasharma.mumbaitour;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -78,7 +75,8 @@ public class HomeActivity extends AppCompatActivity
             openWeatherFragment();
         } else if (id == R.id.train_route_screen) {
             openLocalTrainRouteFragment();
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.places_list_screen) {
+            openPlacesListFragment();
 
         } else if (id == R.id.nav_manage) {
 
@@ -91,6 +89,13 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void openPlacesListFragment() {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.addToBackStack("tag");
+        ft.replace(R.id.frame, new FragmentPlacesList()).commit();
     }
 
     private void openLocalTrainRouteFragment() {

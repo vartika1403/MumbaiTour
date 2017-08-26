@@ -11,9 +11,9 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="LOCAL TRAIN ROUTE" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/places_list_screen"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="MUST VISIT" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
