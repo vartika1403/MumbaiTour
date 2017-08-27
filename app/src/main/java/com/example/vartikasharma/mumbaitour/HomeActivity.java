@@ -9,22 +9,38 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private static final String LOG_TAG = HomeActivity.class.getSimpleName();
+
+    @BindView(R.id.mumbai_cover_image)
+    ImageView mumbaiCoverImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+       // mumbaiCoverImage.setVisibility(View.VISIBLE);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.openDrawer(Gravity.LEFT);
+        openWeatherFragment();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -33,11 +49,21 @@ public class HomeActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(LOG_TAG,"on Resume of HomeActivtity");
+       // mumbaiCoverImage.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+          //  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+          //  drawer.openDrawer(Gravity.LEFT);
+            //openWeatherFragment();
             super.onBackPressed();
         }
     }
@@ -72,19 +98,22 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.weather_screen) {
             // Handle the camera action
+            mumbaiCoverImage.setVisibility(View.INVISIBLE);
             openWeatherFragment();
         } else if (id == R.id.train_route_screen) {
+            mumbaiCoverImage.setVisibility(View.INVISIBLE);
             openLocalTrainRouteFragment();
         } else if (id == R.id.places_list_screen) {
+            mumbaiCoverImage.setVisibility(View.INVISIBLE);
             openPlacesListFragment();
 
-        } else if (id == R.id.nav_manage) {
+        } /*else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
