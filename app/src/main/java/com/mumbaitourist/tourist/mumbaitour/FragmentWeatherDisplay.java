@@ -70,10 +70,6 @@ public class FragmentWeatherDisplay extends Fragment {
         Log.i(LOG_TAG, "call url, " + call.request().url().toString());
 
         call.enqueue(new Callback<JsonElement>() {
-          /*  @Override
-            public void onResponse(Response<JsonElement> response) {
-                Log.i(LOG_TAG, "response, " + response.body());
-            }*/
 
             @Override
             public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
@@ -100,15 +96,12 @@ public class FragmentWeatherDisplay extends Fragment {
             public void onFailure(Call<JsonElement> call, Throwable t) {
                 Log.i(LOG_TAG, "failure");
             }
-
         });
     }
 
     private void updateViewWithData(WeatherResponse weatherObject) throws JSONException {
         String cityNameText = "Mumbai";
         cityName.setText(cityNameText);
-       // JSONObject mainObject = (JSONObject) jsonObject.get("main");
-       // Log.i(LOG_TAG, "mainObject, " + mainObject);
         double tempValue = weatherObject.getTemp();
         double pressureValue = weatherObject.getPressure();
         double humidityValue = weatherObject.getHumidity();

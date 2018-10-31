@@ -37,7 +37,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.MyViewHold
         String placeNameText = placesList.get(position);
         holder.placeName.invalidate();
         holder.placeName.setText(placeNameText);
-
     }
 
     @Override

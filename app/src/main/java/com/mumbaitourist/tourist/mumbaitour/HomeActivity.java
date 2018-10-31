@@ -33,8 +33,6 @@ public class HomeActivity extends AppCompatActivity
         ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-       // mumbaiCoverImage.setVisibility(View.VISIBLE);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.openDrawer(Gravity.LEFT);
         openWeatherFragment();
@@ -52,7 +50,6 @@ public class HomeActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         Log.i(LOG_TAG,"on Resume of HomeActivtity");
-       // mumbaiCoverImage.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -62,9 +59,7 @@ public class HomeActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-          //  DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-          //  drawer.openDrawer(Gravity.LEFT);
-            //openWeatherFragment();
+
             super.onBackPressed();
             if (count == 1) {
                 Log.i(LOG_TAG, "onBack press count 0");
@@ -75,7 +70,6 @@ public class HomeActivity extends AppCompatActivity
                 Log.i(LOG_TAG, "onBack press , " + count);
                 getFragmentManager().popBackStack();
             }
-           // super.onBackPressed();
         }
     }
 
@@ -118,13 +112,7 @@ public class HomeActivity extends AppCompatActivity
             mumbaiCoverImage.setVisibility(View.INVISIBLE);
             openPlacesListFragment();
 
-        } /*else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
