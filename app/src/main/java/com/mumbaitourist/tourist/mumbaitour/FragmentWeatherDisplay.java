@@ -1,10 +1,22 @@
 package com.mumbaitourist.tourist.mumbaitour;
 
 import android.app.Notification;
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.OnLifecycleEvent;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +39,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentWeatherDisplay extends Fragment {
+public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
     private static final String LOG_TAG = FragmentWeatherDisplay.class.getSimpleName();
     private final static String API_KEY = "9351aee12441dbae1f55fb5ac1de496b";
     private JSONObject jsonObject;
+    private WeatherViewModel weatherViewModel;
+    private LifecycleRegistry lifecycleRegistry;
 
     @BindView(R.id.city_name)
     TextView cityName;
@@ -42,8 +56,11 @@ public class FragmentWeatherDisplay extends Fragment {
     TextView cityPressure;
 
     @Override
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        lifecycleRegistry = new LifecycleRegistry((LifecycleOwner) getActivity());
+        lifecycleRegistry.markState(Lifecycle.State.CREATED);
     }
 
     @Override
@@ -58,6 +75,56 @@ public class FragmentWeatherDisplay extends Fragment {
             e.printStackTrace();
         }
         return view;
+    }
+
+    @Override
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    public void onStart() {
+        super.onStart();
+        lifecycleRegistry.markState(Lifecycle.State.STARTED);
+    }
+
+    @Override
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy() {
+        super.onDestroy();
+    }
+
+    @NonNull
+    @Override
+    public Lifecycle getLifecycle() {
+        return lifecycleRegistry;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        ViewModelProviders.of((FragmentActivity) getActivity()).
+                get(WeatherViewModel.class).getWeatherTemp().observe((LifecycleOwner) getActivity(), new Observer<Double>() {
+            @Override
+            public void onChanged(@Nullable Double msg) {
+           }
+        });
+
     }
 
     private void getWeatherData() throws JSONException {
