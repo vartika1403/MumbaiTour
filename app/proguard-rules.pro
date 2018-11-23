@@ -16,6 +16,8 @@
 #   public *;
 #}
 -ignorewarnings
+-dontwarn okio.**
+
 -keep class * {
     public private *;
 }
