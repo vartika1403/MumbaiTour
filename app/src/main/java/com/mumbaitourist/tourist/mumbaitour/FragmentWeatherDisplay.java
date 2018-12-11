@@ -1,16 +1,11 @@
 package com.mumbaitourist.tourist.mumbaitour;
 
-import android.app.Notification;
 import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.OnLifecycleEvent;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
-import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
@@ -21,25 +16,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
     private static final String LOG_TAG = FragmentWeatherDisplay.class.getSimpleName();
     private final static String API_KEY = "9351aee12441dbae1f55fb5ac1de496b";
-    private JSONObject jsonObject;
-    private WeatherViewModel weatherViewModel;
     private LifecycleRegistry lifecycleRegistry;
 
     @BindView(R.id.city_name)
@@ -52,7 +37,6 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
     TextView cityPressure;
 
     @Override
-    //@OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lifecycleRegistry = new LifecycleRegistry((LifecycleOwner) getActivity());
@@ -68,11 +52,6 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
         getLifecycle().addObserver(new WeatherObserver());
 
         subscribeWithTempObserver();
-       /* try {
-            getWeatherData();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
         return view;
     }
 
@@ -117,11 +96,15 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
         try {
             ViewModelProviders.of((FragmentActivity) getActivity()).
                     get(WeatherViewModel.class).getWeatherData().observe((LifecycleOwner) getActivity(),
-                    new Observer<Double>() {
+                    new Observer<WeatherResponse>() {
                 @Override
-                public void onChanged(@Nullable Double temp) {
-                   Log.i(LOG_TAG, "weather temp observed, " + temp);
-                   updateViewWithTemp(temp);
+                public void onChanged(@Nullable WeatherResponse weatherResponse) {
+                   Log.i(LOG_TAG, "weather temp observed, " + weatherResponse.toString());
+                    try {
+                        updateViewWithData(weatherResponse);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         } catch (JSONException e) {
@@ -136,45 +119,6 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-    }
-
-    private void getWeatherData() throws JSONException {
-        Log.i(LOG_TAG, "open weather api");
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-
-       // Call<JsonElement> call = apiService.getCityWeather("Mumbai", API_KEY, "metric");
-
-        //Log.i(LOG_TAG, "call url, " + call.request().url().toString());
-
-       /* call.enqueue(new Callback<JsonElement>() {
-
-            @Override
-            public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
-                Log.i(LOG_TAG, "response, " + response.body().getAsJsonObject().get("main"));
-                JsonElement jsonElement = response.body().getAsJsonObject().get("main");
-                Gson gson = new Gson();
-                final WeatherResponse weatherResponse = gson.fromJson(jsonElement, WeatherResponse.class);
-                Log.i(LOG_TAG, "temp, " + weatherResponse.getTemp());
-                if (getActivity() != null) {
-                    (getActivity()).runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                updateViewWithData(weatherResponse);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonElement> call, Throwable t) {
-                Log.i(LOG_TAG, "failure");
-            }
-        });*/
     }
 
     private void updateViewWithData(WeatherResponse weatherObject) throws JSONException {
