@@ -19,7 +19,7 @@ android {
             storePassword 'vartika@123'
         }
     }
-    packagingOptions{
+    packagingOptions {
         exclude 'META-INF/rxjava.properties'
     }
     compileSdkVersion 27
@@ -45,7 +45,7 @@ android {
             debuggable true
             minifyEnabled false
             shrinkResources false
-            proguardFiles 'proguard-android.optimize.txt',  'proguard-project.txt'
+            proguardFiles 'proguard-android.optimize.txt', 'proguard-project.txt'
             signingConfig signingConfigs.config
         }
     }
