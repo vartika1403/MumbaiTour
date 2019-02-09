@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "143473652932",
+    "firebase_url": "https://mumbaitour.firebaseio.com",
+    "project_id": "mumbaitour",
+    "storage_bucket": "mumbaitour.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:143473652932:android:30bf4449a0c6126a",
+        "android_client_info": {
+          "package_name": "com.mumbaitourist.tourist.mumbaitour"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "143473652932-8ao06h27j87hjj2isj4oqmusnatce9mt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNUuRdxvYifT7M26zYuV_wlOhZuFKys1s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
