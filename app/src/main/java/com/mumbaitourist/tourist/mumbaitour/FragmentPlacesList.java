@@ -5,14 +5,34 @@ import android.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Completable;
+import io.reactivex.CompletableEmitter;
+import io.reactivex.CompletableObserver;
+import io.reactivex.CompletableOnSubscribe;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.Maybe;
+import io.reactivex.MaybeOnSubscribe;
+import io.reactivex.Scheduler;
+import io.reactivex.SingleEmitter;
+import io.reactivex.SingleOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Cancellable;
+import io.reactivex.schedulers.Schedulers;
+import rx.Observable;
+import rx.Single;
 
 
 public class FragmentPlacesList extends Fragment {
@@ -35,17 +55,46 @@ public class FragmentPlacesList extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_places_list, container, false);
         ButterKnife.bind(this, view);
-        addItemsToArrayList();
+        placesArrayList = new ArrayList<String>();
         placeAdapter = new PlacesAdapter(placesArrayList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         placesListRecyclerView.setLayoutManager(layoutManager);
         placesListRecyclerView.setItemAnimator(new DefaultItemAnimator());
         placesListRecyclerView.setAdapter(placeAdapter);
+
+        createSingleObservable();
+
         return view;
     }
 
+    private void createSingleObservable() {
+        Completable.create(new CompletableOnSubscribe() {
+            @Override
+            public void subscribe(CompletableEmitter e) throws Exception {
+                Log.d(LOG_TAG, "onComplete of places list addition");
+                addItemsToArrayList();
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new CompletableObserver() {
+            @Override
+            public void onSubscribe(Disposable d) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(LOG_TAG, "onComplete of places list addition");
+
+            }
+
+            @Override
+            public void onError(Throwable t) {
+                Log.d(LOG_TAG, "onError ," + t.getLocalizedMessage());
+            }
+
+        });
+    }
+
     private void addItemsToArrayList() {
-        placesArrayList = new ArrayList<String>();
         placesArrayList.add("GATEWAY OF INDIA");
         placesArrayList.add("ELEPHANTA CAVES");
         placesArrayList.add("COLABA CAUSEWAY MARKET");
@@ -60,6 +109,7 @@ public class FragmentPlacesList extends Fragment {
         placesArrayList.add("AKSHA BEACH");
         placesArrayList.add("POWAI LAKE");
         placesArrayList.add("WORLI SEAFACE");
+        placeAdapter.notifyDataSetChanged();
 
     }
 }
