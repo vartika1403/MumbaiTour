@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,8 +9,8 @@
         android:id="@+id/temp_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
         android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
         android:text="@string/temp"
         android:textSize="45sp"
         android:textStyle="bold"
@@ -24,15 +25,15 @@
         android:id="@+id/city_name_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:text="@string/mumbai"
-        android:textSize="16sp"
+        android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1" />
 
@@ -40,35 +41,31 @@
         android:id="@+id/day_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/city_name"
         android:layout_marginStart="@dimen/city_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.45"
+        android:layout_marginLeft="@dimen/city_name"
         android:layout_marginTop="10dp"
         android:text="SATURDAY"
-        android:textSize="10sp"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/city_name_text" />
 
     <TextView
         android:id="@+id/today_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:text="TODAY"
-        android:textSize="10sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@id/day_text"
         app:layout_constraintTop_toBottomOf="@id/city_name_text" />
 
     <TextView
-        android:id="@+id/wind_text"
+        android:id="@+id/humidity_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="WIND 9km/h"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Humidity 9km/h" />
 </android.support.constraint.ConstraintLayout>
