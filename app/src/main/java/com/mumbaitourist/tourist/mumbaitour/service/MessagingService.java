@@ -11,22 +11,22 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import java.util.Map;
 
-public class MessagingService extends FirebaseMessagingService {
+public class MessagingService  {
     private static final String LOG_TAG = MessagingService.class.getSimpleName();
 
-    @Override
+   /* @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
 //        Log.d(LOG_TAG, "Message from server " + remoteMessage.getFrom());
 
-     /*   if (remoteMessage.getData().size() > 0) {
+     *//*   if (remoteMessage.getData().size() > 0) {
             sendNotification(null, remoteMessage.getData());
         }
         if (remoteMessage.getNotification() != null) {
             sendNotification(remoteMessage.getNotification(), null);
         }
-    }*/
+    }*//*
 
-  /*  private void sendNotification(RemoteMessage.Notification notification,
+  *//*  private void sendNotification(RemoteMessage.Notification notification,
                                   Map<String, String> data) {
         String title;
         String body;
@@ -58,5 +58,5 @@ public class MessagingService extends FirebaseMessagingService {
 
         notificationManager.notify(0, notificationBuilder.build());
     }*/
-    }
+    //}
 }

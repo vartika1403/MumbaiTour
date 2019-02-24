@@ -27,13 +27,13 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
     private final static String API_KEY = "9351aee12441dbae1f55fb5ac1de496b";
     private LifecycleRegistry lifecycleRegistry;
 
-    @BindView(R.id.city_name)
+    @BindView(R.id.city_name_text)
     TextView cityName;
-    @BindView(R.id.city_temp)
+    @BindView(R.id.temp_text)
     TextView cityTemp;
-    @BindView(R.id.city_humidity)
+    @BindView(R.id.humidity_text)
     TextView cityHumidity;
-    @BindView(R.id.city_pressure)
+    @BindView(R.id.pressure_text)
     TextView cityPressure;
 
     @Override
@@ -47,7 +47,7 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_weather_display, container, false);
+        View view = inflater.inflate(R.layout.weather_ui, container, false);
         ButterKnife.bind(this, view);
         getLifecycle().addObserver(new WeatherObserver());
 
