@@ -3,8 +3,6 @@ package com.mumbaitourist.tourist.mumbaitour;
 
 import android.graphics.Matrix;
 import android.graphics.PointF;
-import android.location.LocationManager;
-import android.util.FloatMath;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;

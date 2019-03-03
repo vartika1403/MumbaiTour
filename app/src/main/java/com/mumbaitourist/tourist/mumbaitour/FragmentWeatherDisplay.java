@@ -11,6 +11,8 @@ import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.text.SpannableStringBuilder;
+import android.text.style.SuperscriptSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +27,7 @@ import butterknife.ButterKnife;
 public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
     private static final String LOG_TAG = FragmentWeatherDisplay.class.getSimpleName();
     private final static String API_KEY = "9351aee12441dbae1f55fb5ac1de496b";
+    private SpannableStringBuilder stringBuilder = null;
     private LifecycleRegistry lifecycleRegistry;
 
     @BindView(R.id.city_name_text)
@@ -39,6 +42,7 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        stringBuilder = new SpannableStringBuilder();
         lifecycleRegistry = new LifecycleRegistry((LifecycleOwner) getActivity());
         lifecycleRegistry.markState(Lifecycle.State.CREATED);
     }
@@ -99,7 +103,7 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
                     new Observer<WeatherResponse>() {
                 @Override
                 public void onChanged(@Nullable WeatherResponse weatherResponse) {
-                   Log.i(LOG_TAG, "weather temp observed, " + weatherResponse.toString());
+                    Log.i(LOG_TAG, "weather temp observed, " + weatherResponse.getTemp());
                     try {
                         updateViewWithData(weatherResponse);
                     } catch (JSONException e) {
@@ -110,10 +114,6 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
-
-    private void updateViewWithTemp(Double temp) {
-        cityTemp.setText("Temperature:" + temp);
     }
 
     @Override
@@ -128,7 +128,7 @@ public class FragmentWeatherDisplay extends Fragment implements LifecycleOwner {
         double pressureValue = weatherObject.getPressure();
         double humidityValue = weatherObject.getHumidity();
         Log.i(LOG_TAG, "tempValue, " +tempValue);
-        cityTemp.setText("TEMPERATURE: " + tempValue);
+        cityTemp.setText((tempValue) + "\u2103");
         cityPressure.setText("PRESSURE: " + pressureValue);
         cityHumidity.setText("HUMIDITY: " + humidityValue);
     }
