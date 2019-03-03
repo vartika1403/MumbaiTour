@@ -23,7 +23,7 @@
 
     <ImageView
         android:id="@+id/mumbai_cover_image"
-        android:background="@drawable/cover_page_mumbai"
+        android:background="@drawable/mumbai_wallpaper"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <FrameLayout

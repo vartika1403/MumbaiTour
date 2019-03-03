@@ -59,7 +59,6 @@ public class HomeActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
             if (count == 1) {
                 Log.i(LOG_TAG, "onBack press count 0");
                 finish();
