@@ -1,25 +1,23 @@
 package com.mumbaitourist.tourist.mumbaitour;
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LifecycleRegistry;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.OnLifecycleEvent;
-import android.arch.lifecycle.ViewModelProviders;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.LifecycleRegistry;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
 import android.text.SpannableStringBuilder;
-import android.text.style.SuperscriptSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
